@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Navbar</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            text-decoration: none !important;
+            font-family: sans-serif;
+
+        }
+
+        body {
+
+            background-color: hsl(0, 0%, 93%, 0.8);
+            overflow-x: hidden !important;
+
+        }
+
+        .bgbannertop i {
+            color: #593199;
+        }
+
+        .bgbannertop {
+            background-color: #0b0d17;
+            height: 30px;
+            z-index: 2;
+
+        }
+
+        .bgbannertop a {
+            color: #fff !important;
+            text-decoration: none !important;
+
+
+        }
+
+        .bgbannertop p {
+            font-size: 15px;
+            padding: 2px;
+            margin-top: 1px;
+
+        }
+
+        @media (max-width:621px) {
+            .bgbannertop {
+                background-color: #0b0d17;
+                height: 91px;
+
+            }
+        }
+
+
+        .container-nav {
+            width: 100%;
+            position: fixed;
+            display: flex;
+            align-items: center;
+            height: 60px;
+            z-index: 3;
+            /* background-color:#efe8fe; */
+            background-color: white;
+        }
+
+        .sticky-navbar {
+            /* margin-bottom: -200px; */
+            height: 60px;
+            display: flex;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: -25px;
+            padding-top: 10px;
+            z-index: 3;
+            /* background-color:#efe8fe; */
+            background-color: white;
+            box-shadow: 2px 4px 8px grey;
+        }
+
+
+
+
+
+        nav {
+            width: fit-content;
+            height: 50px;
+            margin-left: 60px;
+            padding-bottom: 10px;
+
+        }
+
+        nav ul li {
+            display: inline-block;
+            padding: 2px 2px;
+
+        }
+
+        nav ul li a:hover {
+            background: #7533AF !important;
+            color: #fff !important;
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+        nav ul li a {
+            color: #7533AF;
+            font-size: 18px;
+            font-weight: 500;
+            display: inline-block;
+            margin-right: 23px;
+            text-decoration: none !important;
+        }
+
+        .logo img {
+            padding: 13px 10px;
+            margin-left: 130px;
+            width: 130px;
+            height: 90px;
+        }
+
+        .toggle {
+            width: 35px;
+            position: relative;
+            right: 80px;
+            top: 20px;
+            display: none;
+        }
+
+        .toggle span {
+            width: 100%;
+            height: 2px;
+            background-color: #000;
+            float: left;
+            margin-bottom: 8px;
+        }
+
+        .nav-btn {
+            background-color: #7533AF;
+            border: none;
+            margin-left: 400px;
+            padding-top: 20px !important;
+            padding-bottom: 20px !important;
+            padding: 5px;
+            display: flex;
+            color: white;
+            align-items: center;
+            border-radius: 5px;
+            height: 30px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+
+        @media (max-width:991px) {
+
+            .toggle {
+                display: block;
+                position: absolute;
+                right: 40px;
+            }
+
+            .toggle span {
+                width: 70%;
+                height: 2px;
+                background-color: #000;
+                float: left;
+                margin-bottom: 8px;
+            }
+
+            .logo img {
+                padding: 5px 10px;
+                margin-left: 15px;
+                width: 100px;
+                height: 80px;
+            }
+
+            nav {
+                display: none;
+                background-color: white;
+                width: 100%;
+                border-top: 2px solid black;
+                border-bottom: 2px solid black;
+            }
+
+            .nav-btn {
+                margin-left: 100px;
+                font-size: 15px;
+                font-weight: 200;
+            }
+
+            nav ul li {
+                display: flex;
+                flex-direction: column;
+            }
+
+        }
+
+        .tab-content {
+            display: none;
+            padding: 20px;
+            z-index: 3;
+            border-top: 1px solid #ccc;
+            margin-top: 5px;
+            width: 60%;
+            margin-left: 5%;
+            margin-right: 35%;
+            border-radius: 10px;
+
+            /* height: 150px; */
+        }
+
+        .tab-content.active {
+            display: block;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 2px 4px 8px grey;
+        }
+
+        .tab-content {
+            height: fit-content;
+            position: fixed;
+            top: 85px;
+            z-index: 2;
+            background-color: white;
+            box-shadow: 2px 4px 8px grey;
+        }
+
+        #tabContent1 {
+            margin-top: -50px;
+            padding-top: 60px;
+        }
+
+        .nav-contant {
+            display: flex;
+            width: fit-content;
+
+        }
+
+        .rows {
+            width: 100%;
+            height: fit-content;
+        }
+
+        .nav-img {
+
+            height: 130px;
+            width: 250px;
+        }
+
+        .nav-contant .row ul li {
+            list-style: none;
+            line-height: 40px;
+
+        }
+
+        .nav-contant .row p {
+            color: #7533AF;
+            font-size: 19px;
+            font-weight: 500;
+            text-decoration: underline;
+        }
+
+        .nav-contant .row ul li:hover {
+            background: #7533AF !important;
+            color: #fff !important;
+            width: max-content;
+            padding: 1px 6px;
+            border-radius: 5px;
+        }
+
+        .canvas p a {
+            color: #7533AF;
+            font-size: 20px;
+            font-weight: 600;
+            padding-left: 15px;
+        }
+
+        .canvas-tab-content {
+            display: none;
+        }
+
+        .canvas-tab-content.active {
+            display: block;
+        }
+
+        .vertical-scrolling-div {
+            height: 300px;
+            /* Set height to 100 pixels */
+            overflow-y: auto;
+            /* Enable vertical scrolling */
+            border: 2px solid #ccc;
+            /* Optional: Add border for visibility */
+            padding: 10px;
+            /* Optional: Add padding for content spacing */
+        }
+
+        .nav-contant-res {
+            display: flex;
+            flex-direction: column !important;
+        }
+
+        .nav-contant-res ul li {
+            list-style: none;
+            font-size: 18px;
+            line-height: 40px;
+        }
+
+        .nav-contant-res p {
+            color: #7533AF;
+            font-size: 22px;
+            font-weight: 500;
+            text-decoration: underline !important;
+        }
+
+        .nav-contant-res ul li:hover {
+            background: #7533AF !important;
+            color: #fff !important;
+            width: max-content;
+            padding: 1px 6px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="row">
+        <div class="col-md-12  d-flex flex-row justify-content-center bgbannertop top">
+            <p><a href="tel:+966535090666">Saudi Arabia&nbsp; <i class="fas fa-solid fa-phone-volume"></i>&nbsp; 966
+                    535090666</a> &nbsp; l &nbsp; <a href="tel:+ 971507586774">United Arab Emirates&nbsp;&nbsp;<i
+                        class="fas fa-solid fa-phone-volume"></i>&nbsp;+971 507586774</a> &nbsp; l &nbsp;</a> l <a
+                    href="tel:+96567009026">Kuwait &nbsp;&nbsp;<i class="fas fa-solid fa-phone-volume"></i>&nbsp;
+                    +965 67009026&nbsp; </a>&nbsp;</p>
+        </div>
+    </div>
+
+    <div class="container-nav" id="navbar">
+        <div class="logo">
+            <img src="logo.png" alt="">
+        </div>
+        <nav id="nav">
+            <ul class="tabs">
+                <li><a href="#" class="tab" onmouseover="changeTab('tabContent1')">Products & Features</a></li>
+                <li><a href="">Pricing</a></li>
+                <li><a href="" style="color: #000;">العربية </a></li>
+            </ul>
+        </nav>
+
+
+        <button class="nav-btn">Try for free</button>
+        <div class="toggle" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
+            aria-controls="offcanvasRight" onclick="myfunction()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+
+    <div id="tabContent1" class="tab-content">
+        <div class="nav-contant">
+            <div class="row rows">
+                <p>Improve Your Operations</p>
+                <ul>
+                    <li>Point of Sale</li>
+                    <li>Inventory Management</li>
+                    <li>Accounting</li>
+                    <li>Purchase</li>
+                    <li>Deposit System</li>
+                    <li>Return Management</li>
+                    <li>Table Management</li>
+                </ul>
+            </div>
+
+            <div class="row rows">
+                <ul>
+                    <li>Multi Printing</li>
+                    <li>QR Ordering</li>
+                    <li>Kitchen Display</li>
+                    <li>Vendor Management</li>
+                </ul>
+                <p>Wave subscription fee</p>
+                <ul>
+                    <li>Referral Program</li>
+                </ul>
+                <p>Get to Know Your Clients</p>
+                <ul>
+                    <li>Loyalty Program</li>
+                </ul>
+            </div>
+
+            <div class="row rows">
+                <p>Boost Your Online Business</p>
+                <ul>
+                    <li>Online Ordering</li>
+                    <li>Rider Management</li>
+                    <li>Promotions</li>
+                </ul>
+                <img class="nav-img" src="MAIN-IMAGE.png" alt="">
+                <p>All-in-one cloud-based a RMS & POS solution.</p>
+
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Responsive Navbar -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+        <div class="offcanvas-header">
+            <h5 id="offcanvasRightLabel" style="color:  #7533AF;">Imdady</h5>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body ">
+            <div class="canvas">
+                <p><a href="#" class="canvas-tab" data-tab="tab1">Products & Features</a></p>
+                <div id="tab1" class="canvas-tab-content">
+                    <div class="vertical-scrolling-div">
+                        <div class="d-flex flex-col">
+                            <div class="nav-contant-res">
+                                <div class="row rows ">
+                                    <p>Improve Your Operations</p>
+                                    <ul>
+                                        <li>Point of Sale</li>
+                                        <li>Inventory Management</li>
+                                        <li>Accounting</li>
+                                        <li>Purchase</li>
+                                        <li>Deposit System</li>
+                                        <li>Return Management</li>
+                                        <li>Table Management</li>
+                                        <li>Multi Printing</li>
+                                        <li>QR Ordering</li>
+                                        <li>Kitchen Display</li>
+                                        <li>Vendor Management</li>
+                                    </ul>
+                                </div>
+
+                                <div class="row rows">
+                                    <p>Wave subscription fee</p>
+                                    <ul>
+                                        <li>Referral Program</li>
+                                    </ul>
+                                    <p>Get to Know Your Clients</p>
+                                    <ul>
+                                        <li>Loyalty Program</li>
+                                    </ul>
+                                </div>
+
+                                <div class="row rows">
+                                    <p>Boost Your Online Business</p>
+                                    <ul>
+                                        <li>Online Ordering</li>
+                                        <li>Rider Management</li>
+                                        <li>Promotions</li>
+                                    </ul>
+                                    <img class="-img" src="MAIN-IMAGE.png" alt="">
+                                    <p>All-in-one cloud-based a RMS & POS solution.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <p> <a href="#" class="canvas-tab" data-tab="tab2">Pricing</a></p>
+                <p> <a href="#" class="canvas-tab" data-tab="tab3">العربية</a></p>
+            </div>
+
+
+
+
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+    <div>
+        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolore ullam nesciunt illum sequi expedita officiis
+            atque, cumque magnam magni eius! Quibusdam est aperiam, corrupti asperiores voluptatem repellat tenetur
+            suscipit libero quis similique error iure ipsum quisquam, voluptates dolores impedit rerum nulla
+            voluptatibus dolorem nostrum vitae eveniet? Possimus, aspernatur obcaecati doloribus enim doloremque eius
+            distinctio veniam! Tempora mollitia recusandae possimus expedita facilis. Accusantium corporis et doloribus
+            nulla doloremque voluptatibus tempore, deserunt nisi repudiandae commodi magnam laborum modi atque cumque
+            quod nesciunt ut ex beatae necessitatibus facere! Ratione, iusto? Nisi explicabo vel officia? Veritatis
+            suscipit vero et unde non, nostrum totam. Cumque, libero ullam dolorem quae iste eius tenetur praesentium
+            odio quia pariatur non officia harum, suscipit recusandae facere! Amet, repudiandae error velit inventore
+            facilis accusantium, in enim explicabo tenetur voluptatum, suscipit dolor reprehenderit ducimus deserunt.
+            Recusandae ut incidunt animi corrupti suscipit! Cum libero illo quo accusantium qui maxime corrupti magnam
+            provident, omnis ab perferendis distinctio debitis nam. Vitae doloremque error, blanditiis nemo in saepe,
+            quibusdam quo nesciunt nostrum facere nobis. Labore provident laboriosam aliquam placeat totam omnis minima
+            dolorum, necessitatibus laudantium debitis officiis. Alias minus dignissimos vero nemo cumque quod eligendi
+            reiciendis ipsam quas. Explicabo voluptatibus quam omnis harum delectus aspernatur itaque ea, cumque nobis
+            deleniti veritatis aperiam sint asperiores dignissimos suscipit recusandae fugit quisquam ipsum a
+            repellendus est commodi libero? Corrupti ea minima consequuntur ex praesentium, distinctio ipsum eos nisi
+            veritatis repudiandae itaque esse? Sapiente, quasi facilis. Quae provident quaerat officiis. Quas ratione
+            esse temporibus voluptatum debitis corrupti excepturi dolorum, quis doloribus quia consectetur modi nobis
+            dignissimos, qui rem nostrum recusandae. Voluptate ullam, odit laudantium hic incidunt sit aliquam alias.
+            Libero enim obcaecati expedita placeat doloribus cum exercitationem esse ab porro nesciunt optio aperiam
+            deleniti architecto incidunt eveniet vitae, quis tempora sunt. Porro, amet repellat vel tempore laudantium,
+            quisquam ab possimus exercitationem cupiditate rem, ipsum esse aut facere eos asperiores architecto natus
+            consequatur earum debitis dolorem eum accusantium voluptas dolorum. Veniam temporibus saepe culpa, illum ad
+            eum quod eius quasi quidem qui repudiandae alias velit fuga cumque quibusdam, officiis nostrum magnam.
+            Expedita perspiciatis autem optio, totam magni recusandae vero amet possimus laudantium dolorum quis, sit
+            doloremque. Molestiae aspernatur ab ipsam! Rerum cupiditate libero veritatis quidem repellat, obcaecati
+            corrupti, fuga modi odit voluptatibus impedit quos ducimus adipisci nulla quis. Ullam odio itaque corrupti
+            nemo. Cum nostrum labore nihil provident ratione modi vero quae similique incidunt obcaecati tenetur
+            repudiandae earum corrupti cupiditate perspiciatis hic pariatur eius eligendi soluta, eveniet aut amet
+            dolorem ullam quod. Neque, ullam inventore molestiae, harum eaque nulla magni atque iusto, laudantium rerum
+            impedit perspiciatis est aperiam placeat tempora! Consequatur sint, mollitia iusto aperiam nobis in sed
+            illum natus cumque repudiandae rem eveniet veritatis iure harum earum ducimus neque officiis repellat autem
+            vitae dignissimos omnis. Est, eos? Amet in impedit consectetur, fugit animi maiores quam repudiandae, nam
+            nisi omnis rerum minima praesentium asperiores ducimus tempore ratione earum architecto voluptatum voluptas
+            optio cumque placeat. Sint molestiae error dolorem harum soluta, in, voluptatem voluptatibus ipsum minima
+            deserunt cum vel inventore? Obcaecati quaerat cum dolorum consequatur voluptatem aspernatur magnam harum
+            quia explicabo id eius, fugit sunt incidunt doloribus, quidem repudiandae alias ab temporibus consequuntur
+            quam! Nisi doloremque, quia sapiente voluptatum necessitatibus delectus amet in dolorum distinctio, nobis,
+            impedit nostrum. Delectus quas iste, a animi deleniti eligendi unde praesentium. Fuga, possimus. Ullam
+            repellendus repellat beatae dolorum eius quibusdam, sapiente nulla nihil consequuntur magnam veniam facere
+            ut laboriosam dignissimos eaque placeat nisi atque a quaerat deserunt iste ea! Doloribus maxime earum
+            consequuntur accusantium, eos ea placeat! Neque, culpa porro vel illo aperiam laudantium quod ea officiis
+            quia dignissimos molestiae quaerat, non repudiandae itaque exercitationem dolor in laborum sed dolores
+            deleniti. Perferendis quae sunt ipsa recusandae id vitae, nam sit nihil quo in fugiat assumenda aliquid
+            officia iure voluptatibus, iste illo, quia explicabo. Esse nihil voluptatem maxime repudiandae delectus
+            repellendus quaerat quod commodi facilis corrupti omnis suscipit aliquam iusto iure, itaque libero ipsum
+            aperiam eius? Corrupti, vitae architecto corporis placeat recusandae fuga sit dolorum quibusdam nobis odit
+            cum consequatur hic deleniti ratione dolor. Nemo eum quibusdam repudiandae at iure quasi. Eaque labore ab,
+            quaerat ea perspiciatis eum pariatur harum maiores omnis tempora eos nemo. Ea reprehenderit minima error
+            ullam dolorum officia consectetur enim dolor commodi voluptatum cupiditate soluta, quam suscipit veniam
+            obcaecati aperiam voluptate, rerum quia excepturi praesentium ratione ab eveniet! Ratione quam voluptatem
+            architecto perferendis rerum porro corporis dolor aspernatur nesciunt voluptas, sed ipsam cumque quae
+            voluptate unde accusantium odit veniam natus doloremque sint fugiat debitis quaerat facere. Culpa
+            consectetur, vero a necessitatibus reprehenderit hic repellat labore ducimus iste nesciunt ipsam minus autem
+            quo, nostrum architecto recusandae sint delectus aperiam asperiores dignissimos. Earum ea accusantium eos
+            dolor molestiae, porro, dolorum laborum eaque nulla aspernatur ex eius quos itaque odio sapiente expedita
+            iure in exercitationem quis! Repellendus quam quod molestiae eaque sit autem cum perspiciatis maxime
+            voluptates ullam, dolorum nemo labore nam vel sed corporis commodi amet similique! Incidunt ipsum nisi est
+            commodi sed quam explicabo! Mollitia nobis non deleniti, saepe facilis culpa blanditiis cupiditate, ipsam
+            sequi molestias molestiae ipsa quis corrupti veniam necessitatibus odio eum vitae iusto nesciunt ullam fuga
+            voluptatum ab ratione similique? Deleniti libero odio inventore nesciunt. Culpa vero sapiente quas minus id
+            minima dolores quod consequuntur eos quos. Pariatur libero praesentium animi nostrum, distinctio voluptates
+            cupiditate, nobis facilis sequi, reiciendis iste modi voluptas? Corrupti error sed cupiditate! Amet
+            laudantium expedita molestiae error quibusdam voluptatem, maiores doloremque aperiam. Placeat nam
+            perferendis hic tempora asperiores maiores. Repellendus nihil labore quidem nesciunt possimus quam, ducimus
+            doloremque architecto quasi. Sunt pariatur aliquid voluptatibus, labore quaerat enim iusto, saepe sequi odio
+            facilis ipsum laborum. Possimus aliquam laborum nulla reiciendis iste repellendus iusto aspernatur ullam
+            corporis cum provident deleniti modi dolorum expedita, odio, cupiditate libero! Quasi dolorum molestiae
+            similique numquam obcaecati minus aperiam sapiente! Eveniet quis dolore ad! Praesentium deserunt nihil
+            similique perferendis, earum et illum ullam, quod maiores, quibusdam ab. Iste tempore facere ut illum eos
+            modi eveniet, consequuntur dicta aliquid quos atque deserunt reiciendis maiores. Porro tempore deserunt
+            consectetur quod, accusantium quasi distinctio veritatis temporibus ipsum in aperiam rerum pariatur magnam
+            minima nostrum fuga ipsa omnis, placeat suscipit sit. Dolore quis aspernatur, illo id tempora, corrupti
+            assumenda aliquid quisquam, repudiandae consequatur quas eveniet odio accusantium molestiae error est quos
+            et at itaque unde earum voluptatibus hic blanditiis ex. Quisquam facilis minus beatae nostrum voluptates?
+            Ipsum provident quia iure corporis iusto, quas aperiam rerum quis enim beatae sed esse nihil unde eaque
+            tempore possimus id voluptates repellat impedit consequatur quos ad quibusdam! Accusantium impedit, qui rem
+            iure eveniet ducimus nisi optio vel est voluptas deserunt consequatur veritatis mollitia a sequi ipsam
+            voluptatum vitae quo ad. Quis numquam tenetur saepe praesentium? Natus, autem amet aliquid mollitia quo
+            aliquam odit nostrum magni doloremque voluptatibus laboriosam pariatur doloribus quaerat maxime asperiores
+            aspernatur illum quas eos ducimus cupiditate dolor quia reiciendis adipisci? Molestias exercitationem quia
+            repellendus optio adipisci quidem odit nisi pariatur excepturi, officiis doloremque commodi reiciendis
+            numquam incidunt accusamus totam corporis ab earum voluptates dicta itaque officia voluptate. Eaque
+            distinctio enim repudiandae quasi minima assumenda commodi hic voluptate aliquid ipsa aspernatur soluta
+            repellendus earum ipsam quis nulla error placeat debitis, provident accusantium quae libero! Dolorem
+            reiciendis harum dolores dolore repellat tempore, consequatur alias nulla. Nobis, aperiam assumenda dolorem
+            debitis sequi facere corporis placeat, fugit eius, alias obcaecati necessitatibus accusamus? Obcaecati a
+            quod delectus natus voluptatem amet? Officiis, error quaerat, incidunt minus quibusdam eum molestiae
+            possimus voluptatem placeat ex cum architecto! Nesciunt repudiandae animi cum? Unde reprehenderit aliquid
+            laboriosam rem eum repellendus porro sapiente, magnam libero ratione optio id minus voluptatum voluptates
+            praesentium sint iure quam exercitationem, nemo, cupiditate accusamus. Soluta sint voluptatibus dicta
+            deserunt aliquid repudiandae ipsa aut fugit consequatur, cum in libero hic quibusdam asperiores veritatis
+            velit, iusto, ad dignissimos. Aspernatur voluptas unde repudiandae repellat aliquid omnis, consequuntur fuga
+            hic ipsam dolor! Voluptas enim, iure, quam provident labore deserunt pariatur ad ea corporis quae rem velit.
+            Laboriosam asperiores dolores illum iure omnis consectetur alias quo, id sint magni eius officiis aliquid
+            vel perferendis, nemo magnam deleniti adipisci! Tempora soluta harum corporis numquam nemo ex ut aperiam
+            distinctio ipsam commodi! Accusantium ea aperiam, officia expedita cum numquam earum obcaecati blanditiis
+            nulla quaerat ratione, fugit voluptates iusto sequi beatae animi non nihil omnis sed aspernatur, ipsa
+            tempora? Totam iusto quibusdam, nihil ad vel quaerat. Tempore neque dignissimos eius nesciunt recusandae
+            vitae eos sint aliquam obcaecati exercitationem rerum assumenda tempora quibusdam accusamus totam ut
+            deserunt debitis a sed, dolore est praesentium saepe voluptatum! Soluta mollitia beatae quod ex qui
+            perferendis omnis laudantium voluptatum ad possimus deleniti non corporis perspiciatis placeat, officia
+            voluptas temporibus aliquid quae impedit. Cum, dolores. Voluptas optio unde, autem ut doloremque ab mollitia
+            nam dolorem sequi, soluta esse assumenda earum quibusdam numquam officiis? Obcaecati saepe in fuga adipisci
+            autem. Nostrum quas ipsum quia reiciendis explicabo eum voluptas quasi exercitationem esse architecto, quos
+            ipsam pariatur quam ab voluptatibus, amet officia dolor quae tempore cupiditate obcaecati eligendi totam
+            doloremque non. Modi fugit praesentium natus corrupti impedit culpa nostrum ad perferendis esse eaque,
+            laudantium animi dolorum placeat sequi vel labore quia ex assumenda eum. Nesciunt, sunt ullam tempore
+            architecto rem fuga quasi maxime tempora magnam aliquam. Ratione odio id praesentium perspiciatis modi optio
+            omnis reiciendis voluptatibus, aliquid porro pariatur cumque non vitae ab voluptatem sapiente hic quis.
+            Voluptatum natus cupiditate ad quo nihil error dicta sed fugiat nesciunt enim. Iusto accusamus quidem
+            tempore, hic sapiente obcaecati magnam laborum repellat consequatur vitae explicabo provident! Voluptatibus
+            pariatur suscipit sit corporis debitis voluptas tenetur dolorem omnis odit soluta adipisci excepturi
+            quibusdam asperiores beatae autem amet aperiam, laudantium esse corrupti ullam? Praesentium accusantium odio
+            blanditiis porro! Sequi voluptates voluptatibus excepturi laudantium eius velit esse facilis praesentium
+            culpa neque iure quasi, quam dignissimos, nulla sit libero, nostrum veniam quaerat? Culpa deserunt quo
+            adipisci labore atque voluptates alias, sequi esse possimus nam! Reiciendis, numquam ratione vitae in error
+            sint voluptatem minus animi corrupti, eos fugiat. Dignissimos, quisquam illo! Ex doloremque recusandae
+            inventore id quia voluptate alias aspernatur aut corporis repudiandae, tempora, tenetur temporibus. Nisi
+            odit enim veniam commodi totam dicta quae mollitia, impedit aperiam eius eaque doloremque alias porro
+            accusantium sed nostrum magnam delectus. Consequuntur accusamus temporibus accusantium quos consectetur
+            sequi? Recusandae ipsum eligendi, et accusamus assumenda aliquam quidem? Accusamus nisi esse vero, quia iste
+            et eligendi asperiores. Quasi debitis, perferendis saepe magnam enim dolorem adipisci sit consequatur nihil
+            quod impedit dicta labore vitae. Sapiente eveniet nulla commodi debitis itaque sint amet voluptas quasi
+            dolor quas qui temporibus, inventore placeat, adipisci consequuntur, quam reiciendis in corrupti. Tempora
+            cum repellendus exercitationem ullam earum ipsam optio ut, sequi, sapiente voluptas commodi accusantium in
+            labore cumque id? Laborum labore magnam reiciendis aliquid minus? Ratione laboriosam, dolorem vitae eum amet
+            adipisci animi iusto possimus voluptate. Delectus sint, eaque odio id ea aut tempore voluptatum autem
+            aliquam! Fugiat, facere aut dolor distinctio enim ratione eligendi expedita eius veniam, provident dolorem
+            quia quo consequatur voluptatem voluptatibus accusantium vero officia nisi accusamus perferendis. Ad
+            excepturi placeat assumenda consectetur quaerat sequi exercitationem necessitatibus accusantium alias in
+            tempora possimus reprehenderit maxime asperiores doloribus obcaecati ipsa, eum itaque impedit consequatur
+            pariatur rerum eveniet. Natus eligendi vero numquam iusto veniam ratione officiis possimus dolores animi
+            nam, libero aliquam ducimus odio voluptates deleniti ut incidunt sed ipsa! Assumenda laboriosam porro quam
+            quibusdam incidunt atque repellendus. Cumque quae autem, enim earum similique qui, a reprehenderit fuga quod
+            explicabo blanditiis recusandae at sed quam debitis minima corrupti nobis aliquid commodi itaque! Quibusdam
+            doloribus sit numquam natus molestias enim, veritatis accusantium voluptas corporis ad praesentium saepe,
+            qui asperiores quas doloremque. Unde tenetur odit voluptates et delectus nobis quod enim nemo dicta
+            exercitationem eaque laborum dolore eum assumenda omnis, sint excepturi suscipit cupiditate voluptatem fuga
+            rem veritatis ullam. Suscipit aspernatur atque recusandae dicta dignissimos, consequuntur provident ducimus
+            perferendis excepturi libero, laborum voluptas, ut ad repellendus maxime ipsa quas vero deserunt architecto
+            harum corporis. Vitae, deleniti nulla cum aliquid placeat officiis saepe distinctio. Assumenda esse, rerum
+            velit sint error nisi illo sed asperiores. Esse facilis, laboriosam quaerat architecto eveniet aut alias
+            quasi accusantium perferendis praesentium eius temporibus debitis? Nihil corporis mollitia eius sapiente
+            harum?</p>
+    </div>
+
+
+    <script>
+
+        function myfunction() {
+            var navbar = document.getElementById('nav');
+            navbar.classList.toggle('show');
+        }
+
+        window.onscroll = function () {
+            stickyNavbar();
+        };
+        var navbar = document.getElementById("navbar");
+        var sticky = navbar.offsetTop;
+        function stickyNavbar() {
+            if (window.pageYOffset > sticky) {
+                navbar.classList.add("sticky-navbar");
+            }
+            else {
+                navbar.classList.remove("sticky-navbar");
+            }
+        }
+
+
+
+    </script>
+
+
+
+    <script>
+        function changeTab(tabContentId) {
+            const tabContent = document.getElementById(tabContentId);
+
+            // Toggle 'active' class on the tab content
+            tabContent.classList.toggle("active");
+        }
+    </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const tabs = document.querySelectorAll('.canvas-tab');
+            const tabContents = document.querySelectorAll('.canvas-tab-content');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function () {
+                    const tabId = this.getAttribute('data-tab');
+                    activateTab(tabId);
+                });
+            });
+
+            function activateTab(tabId) {
+                tabContents.forEach(content => {
+                    content.classList.remove('active');
+                });
+                tabs.forEach(tab => {
+                    tab.classList.remove('active');
+                });
+                document.getElementById(tabId).classList.add('active');
+            }
+        });
+
+    </script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
